@@ -1,0 +1,6 @@
+.gitignor
+*.png
+test.py
+MC.py
+integ2d_test.eps
+.vscode
