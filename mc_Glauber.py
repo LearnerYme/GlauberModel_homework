@@ -2,7 +2,7 @@ from functions import Nbp_mc, probability
 
 #initialize
 Au = {'name':'Au', 'radius':6.38, 'd':0.535, 'A':197, 'sigma':4.2}
-'''
+
 #draw Nb and Np
 inst_Nbp_mc = Nbp_mc(Au, Au, 1000)
 args_nb = inst_Nbp_mc.args
@@ -14,7 +14,7 @@ args_nb['rho_bins'] = 20
 args_nb['theta_bins'] = 20
 inst_Nbp_mc.plot_func(args_nb)
 inst_Nbp_mc.save_data()
-'''
+
 #draw Pb PNb and PNp
 inst_prob_mc = probability(15)
 args_prob = inst_prob_mc.args
