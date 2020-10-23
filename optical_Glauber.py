@@ -1,15 +1,15 @@
 from functions import Woods_Saxon, thickness, overlap, Nb
 
 #initialize
-Au = {'name':'Au', 'radius':6.38, 'd': 0.535, 'sigma':4.2}
-Cu = {'name':'Cu', 'radius':4.20641, 'd': 0.5977}
-Pb = {'name':'Pb', 'radius':6.62, 'd': 0.546}
+Au = {'name':'Au', 'radius':6.38, 'd': 0.535, 'A':197, 'sigma':4.2}
+Cu = {'name':'Cu', 'radius':4.20641, 'A':7, 'd': 0.5977, 'sigma':'Unknown'}
+Pb = {'name':'Pb', 'radius':6.62, 'A':7, 'd': 0.546, 'sigma':'Unknown'}
 
 #draw Woods Saxon and thickness
 def job1(nuclei):
     #problem 1
     #Woods Saxon
-    inst_woods_saxon = Woods_Saxon(nuclei['radius'], nuclei['d'])
+    inst_woods_saxon = Woods_Saxon(nuclei)
     args_ws = inst_woods_saxon.args
     args_ws['title'] = nuclei['name']
     args_ws['save'] = True
@@ -36,6 +36,7 @@ def job2(nuclei):
     args_ov['title'] = nuclei['name']
     args_ov['save'] = True
     args_ov['path'] = './%s_overlap.png'%nuclei['name']
+    args_ov['second_tget_bins'] = 15
     inst_overlap.plot_func(args_ov)
     #N collision
     inst_Nb = Nb(inst_overlap)

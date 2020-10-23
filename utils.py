@@ -108,3 +108,47 @@ class integ():
         tget_arr, res_arr = integ.integ1d(var, func_value, first_tget_var_range, first_integ_var_range, first_tget_bins, first_integ_bins, first_param_func, f1args)
         tget_arr, res_arr = integ.integ1d(tget_arr, res_arr, second_tget_var_range, second_integ_var_range, second_tget_bins, second_integ_bins, second_param_func, f2args)
         return tget_arr, res_arr
+
+class rdg():
+    def __init__(self, function, xlim, ylim):
+        self.function = function
+        self.xlim = xlim
+        self.ylim = ylim
+        return
+    
+    def get_random(self):
+        while True:
+            x = rd.uniform(self.xlim[0], self.xlim[1])
+            f = rd.uniform(self.xlim[0], self.xlim[1])
+            fx = self.function(x)
+            if f <= fx:
+                return x
+            
+class nucleon_generator():
+    def __init__(self, woods_saxon):
+        self.A = woods_saxon.A
+        self.r = []
+        ymax = woods_saxon.function(0)
+        ws_rdg = rdg(woods_saxon.function, [0, 15], [0, ymax])
+        for pidx in range(self.A):
+            self.r.append(ws_rdg.get_random())
+        self.r = np.array(self.r)
+        self.theta = rd.uniform(0, np.pi, self.A)
+        self.phi = rd.uniform(0, 2*np.pi, self.A)
+        self.s = self.r*np.sin(self.theta)
+        return
+
+    def get_particle(self):
+        r'''
+        Return two array: rho and phi of nuclei matter of this particle.
+        '''
+        return self.s, self.phi
+
+class bsq():
+    def __init__(self, bmax):
+        self.bmax = bmax
+        self.a = 1.0 / bmax**3 * 3
+        return
+
+    def function(self, x):
+        return self.a*x**2
