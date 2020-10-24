@@ -96,6 +96,7 @@ class thickness(custom_function):
                 ax.set_title('%s'%args['title'])
             if args['save']:
                 fig.savefig(args['path'])     
+        return
 
 class overlap(custom_function):
     def __init__(self, func:custom_function):
@@ -166,6 +167,7 @@ class overlap(custom_function):
                 ax.set_title('%s'%args['title'])
             if args['save']:
                 fig.savefig(args['path'])
+        return
 
 class Nb(custom_function):
     def __init__(self, func:custom_function):
@@ -195,6 +197,7 @@ class Nb(custom_function):
                 ax.set_title('%s'%args['title'])
             if args['save']:
                 fig.savefig(args['path'])
+        return
 
 class thickness_mc(custom_function):
     def __init__(self, nuclei):
@@ -321,6 +324,7 @@ class Nbp_mc(custom_function):
                 ax.set_title('%s'%args['title'])
             if args['save']:
                 fig.savefig(args['path'])
+        return
         
     def save_data(self, path='./NbNp_data.csv'):
         b = self.x.reshape(-1, 1)
@@ -371,16 +375,17 @@ class probability(custom_function):
             ax[0, 0].set_xlabel(r'$b\ \mathrm{fm}$')
             ax[0, 0].set_ylabel(r'$P(b)$')
             ax[0, 0].legend()
-            ax[0, 1].hist(self.Nb, label=args['label2'])
+            ax[0, 1].hist(self.Nb, label=args['label2'], density=True)
             ax[0, 1].set_xlabel(r'$<N_{\mathrm{coll}}>$')
             ax[0, 1].set_ylabel(r'$P(<N_{\mathrm{coll}}>)$')
             ax[0, 1].legend()
-            ax[1, 0].hist(self.Np, label=args['label3'])
+            ax[1, 0].hist(self.Np, label=args['label3'], density=True)
             ax[1, 0].set_xlabel(r'$<N_{\mathrm{part}}>$')
             ax[1, 0].set_ylabel(r'$P(<N_{\mathrm{part}}>)$')
             ax[1, 0].legend()
             fig.tight_layout()
             if args['save']:
                 fig.savefig(args['path'])
+        return
 
 
