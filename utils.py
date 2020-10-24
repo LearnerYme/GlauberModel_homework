@@ -130,7 +130,7 @@ class nucleon_generator():
         self.r = []
         ymax = woods_saxon.function(0)
         ws_rdg = rdg(woods_saxon.function, [0, 15], [0, ymax])
-        for pidx in range(self.A):
+        for _ in range(self.A):
             self.r.append(ws_rdg.get_random())
         self.r = np.array(self.r)
         self.theta = rd.uniform(0, np.pi, self.A)
